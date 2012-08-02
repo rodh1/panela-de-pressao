@@ -205,6 +205,10 @@ Then /^I should be in ([^"]*)$/ do |arg1|
     page.current_path.should be_== campaign_path(@campaign)
   when "the new campaign page"
     page.current_path.should be_== new_campaign_path
+  when "this influencer's edit page"
+    page.current_path.should be_== edit_influencer_path(@influencer)
+  when "this influencer page"
+    page.current_path.should be_== influencer_path(@influencer)
   else
     raise "I don't know '#{arg1}'"
   end
@@ -269,4 +273,8 @@ end
 
 Given /^I already poked this campaign$/ do
   Poke.make! :campaign => @campaign, :user => User.find_by_email("nicolas@engage.is")
+end
+
+Given /^there is an influencer called "(.*?)"$/ do |arg1|
+  @influencer = Influencer.make!(:name => arg1)
 end

@@ -1,7 +1,10 @@
 section.content
-  .row  
+  .row
+    h2 Novo Influenciador
     = semantic_form_for @influencer do |f|
-      h2 Novo Influenciador
       = f.inputs :name, :role, :email, :twitter, :facebook
       = f.input :avatar, :as => :file
-      = f.submit "Adicionar influenciador", :class => "btn"
+      - if @influencer.new_record?
+        = f.submit "Adicionar influenciador", :class => "btn"
+      - else
+        = f.submit "Salvar influenciador", :class => "btn"    
